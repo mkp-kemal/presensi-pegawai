@@ -1,4 +1,6 @@
-<h2><b>Nama Aplikasi: PresensiPro</b></h2>
+
+# ${\color{red} 🟢Pre \color{yellow} sensi \color{blue} Pro \space 🟢}$
+
 <h3>Tim Pengembang:</h3>
 <table>
   <tr>
