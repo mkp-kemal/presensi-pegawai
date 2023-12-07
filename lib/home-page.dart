@@ -77,7 +77,6 @@ class _HomePageState extends State<HomePage> {
       homeResponseModel =
           HomeResponseModel.fromJson(json.decode(response.body));
       riwayat.clear();
-      // print('test');
 
       homeResponseModel!.data.forEach((element) {
         if (element.isHariIni) {
@@ -86,6 +85,7 @@ class _HomePageState extends State<HomePage> {
           riwayat.add(element);
         }
       });
+      // print(hariIni?.pulang);
     } catch (e) {
       // Handle the exception here, you can print an error message or log the details.
       print("Error fetching data: $e");
@@ -215,7 +215,7 @@ class _HomePageState extends State<HomePage> {
             }),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            if (hariIni?.pulang == "00:00") {
+            if (hariIni?.pulang == "00:00" || hariIni?.pulang == null) {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => SimpanPage()))
                   .then((value) {
@@ -223,7 +223,7 @@ class _HomePageState extends State<HomePage> {
               });
             }
           },
-          child: (hariIni?.pulang == "00:00")
+          child: (hariIni?.pulang != "00:00")
               ? Icon(Icons.add)
               : Icon(Icons.check, color: Colors.green),
         ));
