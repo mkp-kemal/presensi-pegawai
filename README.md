@@ -6,22 +6,28 @@
   <tr>
     <th>Nama</th>
     <th>NIM</th>
+    <th>Jabatan</th>
+    <th>Jobdesk</th>
   </tr>
   <tr>
     <td>Muhammad Kemal Pasha</td>
     <td>1217050098</td>
+    <td>Backend Developer</td>
   </tr>
   <tr>
     <td>Hilmi Ali Salsabila</td>
     <td>1217050064</td>
+    <td>Frontend Developer</td>
   </tr>
   <tr>
     <td>Muhammad Dwiki Septianto</td>
     <td>1217050089</td>
+    <td>Strategis Dokumenter</td>
   </tr>
   <tr>
     <td>Kensa Baeren Deftnamor</td>
     <td>1217050071</td>
+    <td>UI/UX Design</td>
   </tr>
 </table>
 <h3>Deskripsi Aplikasi: </h3>
