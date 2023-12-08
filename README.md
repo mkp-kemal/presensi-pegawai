@@ -88,6 +88,24 @@
   </tr>
   <tr>
     <td>Riwayat Presensi</td>
-    <td></td>
+    <td>
+      <ol>
+        <li><strong>Login:</strong> Masuk ke akun Anda menggunakan email dan password yang telah terdaftar.</li>
+        <li><strong>Halaman Utama:</strong> Setelah login, Anda akan diarahkan ke halaman utama aplikasi PresensiPro.</li>
+        <li>
+            <strong>Riwayat Presensi:</strong>
+            <ul>
+                <li>Pada halaman utama, langsung memunculkan tampilan riwayat presensi.</li>
+            </ul>
+        </li>
+        <li><strong>Tampilkan Riwayat:</strong> Tekan tombol atau ikon untuk menampilkan riwayat presensi sesuai dengan periode yang telah dipilih.</li>
+        <li>
+            <strong>Detail Presensi:</strong>
+            <ul>
+                <li>Berdasarkan kebutuhan, Anda dapat melihat detail presensi, termasuk tanggal, jam masuk, dan jam keluar.</li>
+            </ul>
+        </li>
+    </ol>
+    </td>
   </tr>
                 </table>
