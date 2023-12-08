@@ -13,21 +13,49 @@
     <td>Muhammad Kemal Pasha</td>
     <td>1217050098</td>
     <td>Backend Developer</td>
+    <td>
+      <ol>
+          <li>Pembuatan Database yang terintegrasi ke Framework Laravel</li>
+          <li>Pengintegrasian API seperti, menentukan alur POST dan GET pada aplikasi</li>
+          <li>Fixing error dan bug</li>
+      </ol>
+    </td>
   </tr>
   <tr>
     <td>Hilmi Ali Salsabila</td>
     <td>1217050064</td>
     <td>Frontend Developer</td>
+    <td>
+      <ol>
+          <li>Pengubahan design Figma ke Code Flutter</li>
+          <li>Penambahan design pada beberapa halaman</li>
+          <li>Memberikan solusi dan referensi kepada bidang backend</li>
+      </ol>
+    </td>
   </tr>
   <tr>
     <td>Muhammad Dwiki Septianto</td>
     <td>1217050089</td>
     <td>Strategis Dokumenter</td>
+    <td>
+      <ol>
+          <li>Pembutan Pitching Deck untuk marketing aplikasi</li>
+          <li>Penentuan strategi market</li>
+          <li>Memberikan solusi dan referensi kepada bidang UI/UX</li>
+      </ol>
+    </td>
   </tr>
   <tr>
     <td>Kensa Baeren Deftnamor</td>
     <td>1217050071</td>
     <td>UI/UX Design</td>
+    <td>
+      <ol>
+          <li>Pembuatan Design pada figma</li>
+          <li>Pelaksanaan uji pengguna (user testing) untuk meningkatkan pengalaman pengguna</li>
+          <li>Memberikan solusi dan referensi kepada bidang Strategis Dokumenter</li>
+      </ol>
+    </td>
   </tr>
 </table>
 <h3>Deskripsi Aplikasi: </h3>
