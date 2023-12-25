@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:presensi/models/home-response.dart';
-import 'package:presensi/simpan-page.dart';
+import 'package:PresensiPro/models/home-response.dart';
+import 'package:PresensiPro/simpan-page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as myHttp;
+// import 'package:http/http.dart' as myHttp;
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,12 +27,10 @@ class _HomePageState extends State<HomePage> {
     _token = _prefs.then((SharedPreferences prefs) {
       String? token = prefs.getString("token");
       if (token != null && token.isNotEmpty) {
-        print("Token exists: $token");
+        // print("Token exists: $token");
         return token;
       } else {
         print("Token not found or empty");
-        // You can handle the case when the token is not available.
-        // For example, you might want to redirect the user to the login screen.
         return "";
       }
     });
@@ -46,16 +45,17 @@ class _HomePageState extends State<HomePage> {
       final String token = await _token;
 
       final Map<String, String> headers = {
+        "Access-Control-Allow-Origin": "*",
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       };
 
-      print("Token in getData yaah: $token");
+      // print("Token in getData yaah: $token");
 
-      var response = await myHttp.get(
-        // Uri.parse('https://mkp-projects.000webhostapp.com/api/get-presensi'),
-        Uri.parse('http://127.0.0.1:8000/api/get-presensi'),
+      var response = await http.get(
+        Uri.parse('https://mkp-projects.000webhostapp.com/api/get-presensi'),
+        // Uri.parse('http://127.0.0.1:8000/api/get-presensi'),
         headers: headers,
       );
 
@@ -87,10 +87,7 @@ class _HomePageState extends State<HomePage> {
       });
       // print(hariIni?.pulang);
     } catch (e) {
-      // Handle the exception here, you can print an error message or log the details.
       print("Error fetching data: $e");
-      // You might want to rethrow the exception if you want to propagate it further.
-      // throw e;
     }
   }
 
@@ -119,8 +116,16 @@ class _HomePageState extends State<HomePage> {
                             } else {
                               if (snapshot.hasData) {
                                 print(snapshot.data);
-                                return Text(snapshot.data!,
-                                    style: TextStyle(fontSize: 18));
+                                return Text(
+                                  snapshot.data!,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontFamily: 'DM Sans',
+                                    fontWeight: FontWeight.w700,
+                                    height: 0,
+                                  ),
+                                );
                               } else {
                                 return Text("-",
                                     style: TextStyle(fontSize: 18));
@@ -131,47 +136,139 @@ class _HomePageState extends State<HomePage> {
                         height: 20,
                       ),
                       Container(
-                        width: 400,
-                        decoration: BoxDecoration(color: Colors.blue[800]),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(children: [
-                            Text(hariIni?.tanggal ?? '-',
+                        width: 354,
+                        height: 257.71,
+                        margin: EdgeInsets.only(top: 26, left: 30, right: 30),
+                        decoration: ShapeDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(-1.00, -0.01),
+                            end: Alignment(1, 0.01),
+                            colors: [Color(0xFF38B6FF), Color(0xFF38B6FF)],
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              left: 30,
+                              top: 73,
+                              child: Text(
+                                hariIni?.masuk ?? '-',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 16)),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Column(
-                                  children: [
-                                    Text(hariIni?.masuk ?? '-',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 24)),
-                                    Text("Masuk",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 16))
-                                  ],
+                                  color: Colors.white,
+                                  fontSize: 36,
+                                  fontFamily: 'DM Sans',
+                                  fontWeight: FontWeight.w700,
+                                  height: 0,
                                 ),
-                                Column(
-                                  children: [
-                                    Text(
-                                      (hariIni?.pulang == "00:00")
-                                          ? '-'
-                                          : hariIni?.pulang ?? '-',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 24),
+                              ),
+                            ),
+                            Positioned(
+                              left: 205,
+                              top: 73,
+                              child: Text(
+                                (hariIni?.pulang == "00:00")
+                                    ? '-'
+                                    : hariIni?.pulang ?? '-',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 36,
+                                  fontFamily: 'DM Sans',
+                                  fontWeight: FontWeight.w700,
+                                  height: 0,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 30,
+                              top: 23,
+                              child: SizedBox(
+                                width: 318,
+                                child: Text(
+                                  hariIni?.tanggal ?? '-',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontFamily: 'DM Sans',
+                                    fontWeight: FontWeight.w400,
+                                    height: 0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 196,
+                              top: 189,
+                              child: Container(
+                                width: 125,
+                                height: 40,
+                                decoration: ShapeDecoration(
+                                  color: Color(0xFFFEFFFE),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                ),
+                                child: ElevatedButton(
+                                    onPressed: () {
+                                      if (hariIni?.pulang == "00:00" ||
+                                          hariIni?.pulang == null) {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SimpanPage()))
+                                            .then((value) {
+                                          setState(() {});
+                                        });
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary:
+                                          Color(0xFFFEFFFE), // Background color
+                                      onPrimary: Color(0xFF2596be),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                      ), // Text Color (Foreground color)
                                     ),
-                                    Text("Pulang",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 16))
-                                  ],
-                                )
-                              ],
-                            )
-                          ]),
+                                    child: (hariIni?.pulang == "00:00")
+                                        ? Text(
+                                            "Isi Kehadiran",
+                                            style: TextStyle(fontSize: 12),
+                                          )
+                                        : Icon(Icons.check,
+                                            color: Colors.green)),
+                              ),
+                            ),
+                            Positioned(
+                              left: 30,
+                              top: 120,
+                              child: Text(
+                                'Pukul Masuk',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontFamily: 'DM Sans',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: 206,
+                              top: 120,
+                              child: Text(
+                                'Pukul Keluar',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontFamily: 'DM Sans',
+                                  fontWeight: FontWeight.w500,
+                                  height: 0,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(height: 20),

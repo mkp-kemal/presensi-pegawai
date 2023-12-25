@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:presensi/home-page.dart';
+import 'package:PresensiPro/home-page.dart';
 import 'package:http/http.dart' as myHttp;
-import 'package:presensi/models/login-response.dart';
+import 'package:PresensiPro/models/login-response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -51,8 +51,8 @@ class _LoginPageState extends State<LoginPage> {
     LoginResponseModel? loginResponseModel;
     Map<String, String> body = {"email": email, "password": password};
     var response = await myHttp.post(
-        // Uri.parse('https://mkp-projects.000webhostapp.com/api/login'),
-        Uri.parse('http://127.0.0.1:8000/api/login'),
+        Uri.parse('https://mkp-projects.000webhostapp.com/api/login'),
+        // Uri.parse('http://127.0.0.1:8000/api/login'),
         body: body);
     if (response.statusCode == 401) {
       ScaffoldMessenger.of(context)
@@ -83,41 +83,146 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-
 //PERUBAHAN FRONTEND DARI SINI===============================================================
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(child: Text("LOGIN")),
-              SizedBox(height: 20),
-              Text("Email"),
-              TextField(
-                controller: emailController,
+        child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: ListView(children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'images/uin.png',
+                        height: 60,
+                        width: 60,
+                      ),
+                      Image.asset(
+                        'images/ptipd.png',
+                        height: 100,
+                        width: 100,
+                      ),
+                      Image.asset(
+                        'images/app.png',
+                        height: 60,
+                        width: 60,
+                      ),
+                    ],
+                  ),
+                  const Center(
+                    child: Text(
+                      "Presensi Praktis,\nKehadiran Efisien!",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 34,
+                        fontFamily: 'DM Sans',
+                        fontWeight: FontWeight.w700,
+                        height: 0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Container(
+                    child: Text(
+                      'Teknologi Absensi, Pintar, Cepat,\ndan Akurat, Kunci Kehadiran\nyang Efisien!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF4F4F4FCC),
+                        fontSize: 18,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w600,
+                        height: 0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  // Text(
+                  //   "Email",
+                  //   style: TextStyle(fontWeight: FontWeight.bold),
+                  // ),
+                  Container(
+                    margin: EdgeInsets.only(left: 20, right: 20),
+                    child: Column(
+                      children: [
+                        TextField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            hintText: "No Pegawai/NIP",
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        // Text(
+                        //   "Password",
+                        //   style: TextStyle(fontWeight: FontWeight.bold),
+                        // ),
+                        TextField(
+                          controller: passwordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: "Password",
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: isLoading
+                              ? null // Disable the button when loading
+                              : () {
+                                  setState(() {
+                                    isLoading =
+                                        true; // Set loading state to true
+                                  });
+                                  login(emailController.text,
+                                          passwordController.text)
+                                      .then((_) {
+                                    // Set loading state back to false after login completes
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                  });
+                                },
+                          child: Text(
+                            isLoading
+                                ? "Loading..."
+                                : "Log In", // Change text based on loading state
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w600,
+                              height: 0,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size(double.infinity, 60),
+                            primary: Color(0xFF318CA0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(height: 20),
-              Text("Password"),
-              TextField(
-                controller: passwordController,
-                obscureText: true,
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                  onPressed: () {
-                    login(emailController.text, passwordController.text);
-                  },
-                  child: Text("Masuk"))
-            ],
-          ),
-        ),
-      )),
+            ])),
+      ),
     );
   }
 }
