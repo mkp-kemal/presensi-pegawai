@@ -1,6 +1,7 @@
 
 # ${\color{red} 🟢Pre \color{yellow} sensi \color{blue} Pro \space 🟢}$
 
+<a href="https://youtu.be/f8MFDtGAefM" target="_blank">Youtube Pitch Deck</a>
 <h3>Tim Pengembang:</h3>
 <table>
   <tr>
@@ -143,3 +144,4 @@
     </td>
   </tr>
                 </table>
+
